@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "68fff91b077c007eb333a609"
+  },
+  "user": {
+    "$oid": "68fe2106e8aac793d98f162a"
+  },
+  "book": {
+    "$oid": "68ffebd245efc4a1dabed2d1"
+  },
+  "rating": 1,
+  "comment": "hard to fucus",
+  "createdAt": {
+    "$date": "2025-10-27T22:58:35.523Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-27T22:58:35.523Z"
+  },
+  "__v": 0
+}]

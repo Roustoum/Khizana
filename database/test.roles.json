@@ -1,0 +1,166 @@
+[{
+  "_id": {
+    "$oid": "691dd1a295d01e7a362f1782"
+  },
+  "name": "SuperAdmin",
+  "permissions": {
+    "dashboard": {
+      "access": true,
+      "view": true
+    },
+    "categories": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "roles_permissions": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "users": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "authors": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "articles": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "public_books": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "publishers": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "notifications": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "coupons": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "subscriptions": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "currencies": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "educational_books": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "quotes": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "posts": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "analysis": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "contactUs": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    },
+    "slides": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": true,
+      "manage": true
+    }
+  },
+  "immutable": true,
+  "createdAt": {
+    "$date": "2025-11-19T14:18:10.552Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-19T14:18:10.552Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691dd1a395d01e7a362f178a"
+  },
+  "name": "User",
+  "permissions": {
+    "public_books": {
+      "view": true,
+      "create": true,
+      "edit": true,
+      "delete": false,
+      "manage": false
+    },
+    "dashboard": {
+      "access": false,
+      "view": false
+    }
+  },
+  "immutable": true,
+  "createdAt": {
+    "$date": "2025-11-19T14:18:11.221Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-19T14:18:11.221Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "691c86bb71fb44c88d1ede78"
+  },
+  "name": "test",
+  "icon": "crown",
+  "price": 69,
+  "months": 1,
+  "reduction": 0,
+  "isActive": false,
+  "createdAt": {
+    "$date": "2025-11-18T14:46:19.783Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-18T14:46:19.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691c883438761644caf2b2eb"
+  },
+  "name": "toto",
+  "icon": "gem",
+  "price": 69,
+  "months": 3,
+  "reduction": 0,
+  "isActive": false,
+  "createdAt": {
+    "$date": "2025-11-18T14:52:36.588Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-18T14:54:46.820Z"
+  },
+  "__v": 0
+}]

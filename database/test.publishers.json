@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "68ff9d1ab962f4472e7570c3"
+  },
+  "name": "test",
+  "image": "6352dbc6-be42-482d-9be1-5399822460f6.png",
+  "description": "test",
+  "facebook": "test.test",
+  "youtube": "test.test",
+  "telegram": "test.test",
+  "whatsapp": "test.test",
+  "instagram": "test.test",
+  "is_verified": true,
+  "createdAt": {
+    "$date": "2025-10-27T16:26:02.074Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-27T16:28:48.828Z"
+  },
+  "__v": 0
+}]

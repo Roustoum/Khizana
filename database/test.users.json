@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "68fe2106e8aac793d98f162a"
+  },
+  "email": "roustoum1998lambor@gmail.com",
+  "provider": "google",
+  "name": "testor",
+  "image": "91bb0032-58d2-468c-85c1-632f183a62d1.png",
+  "is_login": false,
+  "is_active": true,
+  "createdAt": {
+    "$date": "2025-10-26T13:24:22.616Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-18T16:23:32.130Z"
+  },
+  "role": {
+    "$oid": "691dd1a295d01e7a362f1782"
+  },
+  "__v": 0,
+  "gender": "ذكر",
+  "password": "$2b$10$o3wWrepHnhB2a5TY65ifD.4.VXUbJBogi3e6mDw9gULcsgrRGYKDG",
+  "buyed_books_number": 0,
+  "offred_books_number": 0,
+  "subscription": {
+    "$oid": "691c86bb71fb44c88d1ede78"
+  },
+  "subscriptionExipireDate": {
+    "$date": "2025-12-18T16:23:32.130Z"
+  }
+}]

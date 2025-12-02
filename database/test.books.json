@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "68ffebcd45efc4a1dabed2c2"
+  },
+  "title": "test",
+  "description": "test",
+  "price": 0,
+  "language": "Arabic",
+  "pages": 0,
+  "views": 0,
+  "order": 0,
+  "is_active": true,
+  "is_educational": true,
+  "discount": 0,
+  "free": false,
+  "level": "universty",
+  "subject": "test",
+  "content_type": "papers",
+  "pdf": "bb833fe2-716e-4b47-b207-eb474bfeea7d.pdf",
+  "image": "99ef1c49-9782-4928-986c-b57d1265ae13.png",
+  "createdAt": {
+    "$date": "2025-10-27T22:01:49.485Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-28T00:57:36.453Z"
+  },
+  "__v": 0,
+  "category": null
+},
+{
+  "_id": {
+    "$oid": "68ffebd245efc4a1dabed2d1"
+  },
+  "isbn": "699",
+  "title": "test",
+  "description": "",
+  "price": 69,
+  "language": "Arabic",
+  "pages": 69,
+  "views": 0,
+  "order": 0,
+  "is_active": false,
+  "is_educational": false,
+  "discount": 0,
+  "free": false,
+  "publication_date": {
+    "$date": "2020-10-12T00:00:00.000Z"
+  },
+  "pdf": "d478d02a-836c-4972-bda9-766bd98a381e.pdf",
+  "image": "a8ff80a2-9752-445d-890b-310294838593.jpg",
+  "category": {
+    "$oid": "6911eae2ab58304679ac212d"
+  },
+  "author": {
+    "$oid": "68ff98e9afda7ff50e3add07"
+  },
+  "publisher": {
+    "$oid": "68ff9d1ab962f4472e7570c3"
+  },
+  "createdAt": {
+    "$date": "2025-10-27T22:01:54.154Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-10T13:39:19.918Z"
+  },
+  "__v": 0
+}]
