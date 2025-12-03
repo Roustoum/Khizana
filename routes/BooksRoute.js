@@ -5,6 +5,7 @@ const { authMidleware } = require('../middlewares/Protected');
 const { BanMiddleware } = require('../middlewares/Ban');
 const { validateBody } = require('../utils/validateBody');
 const { extractPDFText, getTopUsersByPeriod } = require('../controllers/BookController');
+const mongoose = require("mongoose");
 const CustomError = require('../utils/customError');
 const Book = require('../models/BooksModel');
 const Author = require('../models/AuthorModel');
@@ -22,6 +23,72 @@ bookRouter.get('/search/:query', authMidleware, BanMiddleware, async (req, res, 
     if (!req.user.role.permissions.public_books.view) throw new CustomError("غير مصرح لك بمشاهدة الكتب العامة", 403);
     const books = await Book.find({ is_educational: false, $or: [{ title: { $regex: req.params.query, $options: 'i' } }, { description: { $regex: req.params.query, $options: 'i' } }] }).setOptions({ skipPopulate: true });
     res.status(200).send({ success: true, books });
+});
+
+bookRouter.get('/user/:id', authMidleware, BanMiddleware, async (req, res, next) => {
+    const userId = req.params.id;
+
+    const books = await BookUser.aggregate([
+        {
+            $match: {
+                user: new mongoose.Types.ObjectId(userId)
+            }
+        },
+        {
+            $lookup: {
+                from: 'books',
+                localField: 'book',
+                foreignField: '_id',
+                as: 'bookDetails'
+            }
+        },
+        { $unwind: '$bookDetails' },
+        // Lookup pour publisher
+        {
+            $lookup: {
+                from: 'publishers',
+                localField: 'bookDetails.publisher',
+                foreignField: '_id',
+                as: 'publisherInfo'
+            }
+        },
+        // Lookup pour author (un seul auteur)
+        {
+            $lookup: {
+                from: 'authors', // Assure-toi que c'est le bon nom de collection
+                localField: 'bookDetails.author', // SINGULIER - pas 'authors'
+                foreignField: '_id',
+                as: 'authorInfo'
+            }
+        },
+        {
+            $addFields: {
+                // Publisher (peut être null)
+                'bookDetails.publisher': {
+                    $cond: {
+                        if: { $gt: [{ $size: '$publisherInfo' }, 0] },
+                        then: { $arrayElemAt: ['$publisherInfo', 0] },
+                        else: null
+                    }
+                },
+                // Author (peut être null)
+                'bookDetails.author': {
+                    $cond: {
+                        if: { $gt: [{ $size: '$authorInfo' }, 0] },
+                        then: { $arrayElemAt: ['$authorInfo', 0] },
+                        else: null
+                    }
+                }
+            }
+        },
+        { $replaceRoot: { newRoot: '$bookDetails' } }
+    ]);
+
+    res.status(200).json({
+        success: true,
+        count: books.length,
+        books: books
+    });
 });
 
 bookRouter.get("/me", authMidleware, BanMiddleware, async (req, res, next) => {
@@ -47,6 +114,14 @@ bookRouter.get("/gift/:id", authMidleware, BanMiddleware, async (req, res, next)
     req.user.offred_books_number++;
     await req.user.save();
     res.status(200).send({ success: true, message: "تم اهداء الكتاب بنجاح", bookUser });
+});
+
+bookRouter.get('/all', authMidleware, BanMiddleware, async (req, res, next) => {
+    if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
+    if (!req.user.role.permissions.public_books.view) throw new CustomError("غير مصرح لك بمشاهدة الكتب العامة", 403);
+
+    const books = await Book.find();
+    res.status(200).send({ success: true, books });
 });
 
 bookRouter.get("/", authMidleware, BanMiddleware, async (req, res, next) => {
