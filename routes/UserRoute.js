@@ -44,7 +44,7 @@ userRouter.put("/:id", authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role.permissions.users.edit) {
         throw new CustomError("غير مصرح لك بتعديل المستخدمين", 403);
     }
-    validateBody(req.body, [], true, ["name", "email", "password", "role"]);
+    validateBody(req.body, [], true, ["name", "email", "password", "role","is_active"]);
 
     if (req.body.role !== undefined) {
         const role = await Role.findById(req.body.role);
