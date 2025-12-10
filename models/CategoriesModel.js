@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
-const { Book } = require("./BooksModel");
+const Book = require("./BooksModel");
 const autoFileCleanup = require("../utils/autoFileCleanup");
 
 const categorySchema = new mongoose.Schema({
