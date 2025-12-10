@@ -64,7 +64,8 @@ app.get("/test", (req, res) => {
 // });
 
 app.use('/profiles', express.static(path.join(__dirname, 'public', 'profile')));
-app.use('/books', express.static(path.join(__dirname, 'public', 'books','images')));
+app.use('/books', express.static(path.join(__dirname, 'public', 'books', 'images')));
+app.use('/category', express.static(path.join(__dirname, 'public', 'category')));
 
 app.get("/auth/google/callback", (req, res) => {
     res.send("✅ Google OAuth callback OK");

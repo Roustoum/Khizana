@@ -4,6 +4,14 @@ const { authMidleware } = require('../middlewares/Protected');
 const CustomError = require('../utils/customError');
 const { validateBody } = require('../utils/validateBody');
 const Role = require('../models/RoleModel');
+const User = require('../models/UserModel');
+
+roleRoute.get('/users', authMidleware, async (req, res, next) => {
+    if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
+    if (!req.user.role.permissions.roles_permissions.view) throw new CustomError("غير مصرح لك بمشاهدة الأدوار", 403);
+    const users = await User.find({ role: { $ne: null } });
+    res.status(200).send({ success: true, users });
+});
 
 roleRoute.get('/', authMidleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
