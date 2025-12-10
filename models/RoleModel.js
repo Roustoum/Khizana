@@ -11,8 +11,7 @@ const permissionSchema = new mongoose.Schema({
 
 const roleSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true, unique: true },
-
+        name: { type: String, required: [true, 'اسم الدور مطلوب'], unique: [true, 'اسم الدور موجود بالفعل'] },
         permissions: {
             dashboard: {
                 access: { type: Boolean, required: true, default: false },
@@ -30,14 +29,12 @@ const roleSchema = new mongoose.Schema(
             subscriptions: permissionSchema,
             currencies: permissionSchema,
             educational_books: permissionSchema,
-            // Nouvelles permissions ajoutées
             quotes: permissionSchema,
             posts: permissionSchema,
             analysis: permissionSchema,
             contactUs: permissionSchema,
             slides: permissionSchema,
         },
-
         immutable: { type: Boolean, required: true, default: false },
     },
     { timestamps: true }
@@ -82,9 +79,96 @@ const initRoles = async function () {
         await Role.create({
             name: "User",
             immutable: true,
-            permissions: {
-                public_books: { view: true, create: true, edit: true },
-            },
+            "permissions": {
+                "dashboard": {
+                    "access": false,
+                    "view": false
+                },
+                "categories": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "roles_permissions": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "users": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "authors": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "articles": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "public_books": {
+                    "view": true,
+                    "create": true,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "publishers": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "notifications": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "coupons": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "subscriptions": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "currencies": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                },
+                "educational_books": {
+                    "view": false,
+                    "create": false,
+                    "edit": false,
+                    "delete": false,
+                    "manage": false
+                }
+            }
         });
         console.log("✅ Rôles User initialisés");
     }
