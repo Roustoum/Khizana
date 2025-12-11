@@ -32,6 +32,7 @@ const chargilyRouter = require("./routes/ChargilyRoute");
 const cartRouter = require("./routes/CartRoute");
 const userInterestRouter = require("./routes/UserInterestRoute");
 const homeRouter = require("./routes/HomeRoute");
+const analysisRoute = require("./routes/AnalysisRoute");
 
 ConnectDB();
 
@@ -94,6 +95,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/chargily", chargilyRouter);
 app.use("/api/user-interest", userInterestRouter);
 app.use("/api/home", homeRouter);
+app.use("/api/analysis", analysisRoute);
 
 app.use(errorHandler);
 

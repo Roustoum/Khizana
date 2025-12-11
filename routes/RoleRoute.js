@@ -1,19 +1,20 @@
 const express = require('express');
 const roleRoute = express.Router();
 const { authMidleware } = require('../middlewares/Protected');
-const CustomError = require('../utils/customError');
+const { BanMiddleware } = require('../middlewares/Ban');
 const { validateBody } = require('../utils/validateBody');
+const CustomError = require('../utils/customError');
 const Role = require('../models/RoleModel');
 const User = require('../models/UserModel');
 
-roleRoute.get('/users', authMidleware, async (req, res, next) => {
+roleRoute.get('/users', authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
     if (!req.user.role.permissions.roles_permissions.view) throw new CustomError("غير مصرح لك بمشاهدة الأدوار", 403);
     const users = await User.find({ role: { $ne: null } });
     res.status(200).send({ success: true, users });
 });
 
-roleRoute.get('/', authMidleware, async (req, res, next) => {
+roleRoute.get('/', authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
     if (!req.user.role.permissions.roles_permissions.view) throw new CustomError("غير مصرح لك بمشاهدة الأدوار", 403);
 
@@ -21,7 +22,7 @@ roleRoute.get('/', authMidleware, async (req, res, next) => {
     res.status(200).send({ success: true, roles });
 });
 
-roleRoute.post('/', authMidleware, async (req, res, next) => {
+roleRoute.post('/', authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
     if (!req.user.role.permissions.roles_permissions.create) throw new CustomError("غير مصرح لك بإنشاء الأدوار", 403);
     validateBody(req.body, ["name", "permissions"], true, []);
@@ -32,7 +33,7 @@ roleRoute.post('/', authMidleware, async (req, res, next) => {
     res.status(201).send({ success: true, role });
 });
 
-roleRoute.put("/:id", authMidleware, async (req, res, next) => {
+roleRoute.put("/:id", authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
     if (!req.user.role.permissions.roles_permissions.edit) throw new CustomError("غير مصرح لك بتعديل الأدوار", 403);
     validateBody(req.body, [], false, []);
@@ -51,7 +52,7 @@ roleRoute.put("/:id", authMidleware, async (req, res, next) => {
     res.status(200).send({ success: true, role });
 });
 
-roleRoute.delete("/:id", authMidleware, async (req, res, next) => {
+roleRoute.delete("/:id", authMidleware, BanMiddleware, async (req, res, next) => {
     if (!req.user.role) throw new CustomError("المستعمل غير مصرح به", 404);
     if (!req.user.role.permissions.roles_permissions.delete) throw new CustomError("غير مصرح لك بحذف الأدوار", 403);
 
