@@ -19,11 +19,9 @@ analysisRoute.get('/', authMidleware, BanMiddleware, async (req, res, next) => {
     const nonSubscribedUsers = await User.countDocuments({ $or: [{ subscription: null }, { subscriptionExipireDate: { $lte: new Date() } }] });
 
     const top5Categories = await Category.aggregate([
-        {
-            $lookup: { from: "books", localField: "_id", foreignField: "category", as: "books" }
-        },
-        { $addFields: { booksCount: { $size: "$books" } } },
-        { $match: { "books.is_active": true } },
+        { $lookup: { from: "books", localField: "_id", foreignField: "category", as: "books" } },
+        { $addFields: { activeBooks: { $filter: { input: "$books", as: "book", cond: { $eq: ["$$book.is_active", true] } } } } },
+        { $addFields: { booksCount: { $size: "$activeBooks" } } },
         { $sort: { booksCount: -1 } },
         { $limit: 5 }
     ]);
